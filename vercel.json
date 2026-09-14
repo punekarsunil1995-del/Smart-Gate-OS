@@ -10,7 +10,6 @@
       "root": "backend",
       "framework": "express",
       "buildCommand": "cd .. && npm install && npm run build:backend",
-      "startCommand": "npm run start",
       "outputDirectory": "dist"
     }
   }
