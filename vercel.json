@@ -1,26 +1,17 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/next"
+  "services": {
+    "frontend": {
+      "root": "frontend",
+      "framework": "nextjs",
+      "buildCommand": "cd .. && npm install && cd frontend && npm run build",
+      "outputDirectory": ".next"
     },
-    {
-      "src": "backend/src/server.ts",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": ["backend/prisma/**", "packages/types/**"]
-      }
+    "backend": {
+      "root": "backend",
+      "framework": "express",
+      "buildCommand": "cd .. && npm install && npm run build:backend",
+      "startCommand": "npm run start",
+      "outputDirectory": "dist"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/src/server.ts"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/$1"
-    }
-  ]
+  }
 }
